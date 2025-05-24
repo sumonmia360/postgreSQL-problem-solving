@@ -15,5 +15,10 @@ CREATE TABLE sightings (sighting_id SERIAL PRIMARY KEY,species_id INT REFERENCES
 INSERT INTO sightings (ranger_id,species_id,location,sighting_time,notes ) VALUES(1,1,'Peak Ridge','2024-05-10 07:45:00','Camera trap image captured'),(2,2,'Bankwood Area','2024-05-12 16:20:00','Juvenile seen'),(3,3,'Bamboo Grove East','2024-05-15 09:10:00','Feeding observed');
 
 SELECT * FROM sightings;
+---------------------------------------------------------
+--problem-1
 
----PROBLEMS-SOLVING
+INSERT INTO rangers(name,region) VALUES('Derek Fox','Coastal Plains');
+
+--problem-2
+

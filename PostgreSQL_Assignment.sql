@@ -27,3 +27,9 @@ SELECT  count(conservation_status) as unique_species_count FROM species WHERE co
 --problem-3
 
 SELECT * FROM sightings WHERE location  ILIKE'%Pass%';
+
+--problem-4
+
+SELECT name,count(sighting_time) as total_sightings  FROM rangers JOIN sightings USING(ranger_id) GROUP BY name;
+
+--problem-5

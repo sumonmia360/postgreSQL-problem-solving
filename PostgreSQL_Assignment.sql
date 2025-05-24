@@ -33,3 +33,6 @@ SELECT * FROM sightings WHERE location  ILIKE'%Pass%';
 SELECT name,count(sighting_time) as total_sightings  FROM rangers JOIN sightings USING(ranger_id) GROUP BY name;
 
 --problem-5
+SELECT * FROM species;
+SELECT * FROM sightings;
+SELECT * FROM rangers;

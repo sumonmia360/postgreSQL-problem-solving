@@ -21,4 +21,7 @@ SELECT * FROM sightings;
 INSERT INTO rangers(name,region) VALUES('Derek Fox','Coastal Plains');
 
 --problem-2
+SELECT * FROM species;
+SELECT  count(conservation_status) as unique_species_count FROM species WHERE conservation_status = 'Endangered';
+
 

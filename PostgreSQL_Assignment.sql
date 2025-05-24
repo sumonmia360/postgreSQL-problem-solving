@@ -36,3 +36,17 @@ SELECT name,count(sighting_time) as total_sightings  FROM rangers JOIN sightings
 
 SELECT common_name FROM species WHERE species_id NOT IN (SELECT species_id  FROM species JOIN sightings USING(species_id));
 
+--problem-6
+
+CREATE or REPLACE VIEW with_out_main_max AS SELECT * FROM sightings WHERE not sighting_time = (SELECT max(sighting_time) FROM sightings);
+CREATE or REPLACE VIEW  recent_sightings_1 as SELECT max(sighting_time) FROM with_out_main_max;
+CREATE or REPLACE VIEW recent_sightings_2 as SELECT max(sighting_time) FROM sightings;
+CREATE or REPLACE VIEW sighting_and_species_T as ( SELECT * FROM species JOIN  sightings USING(species_id) WHERE sighting_time = (SELECT * FROM recent_sightings_1) or  sighting_time = (SELECT * FROM recent_sightings_2))
+
+SELECT common_name,sighting_time,name FROM rangers JOIN sighting_and_species_t USING(ranger_id);
+
+
+
+
+
+

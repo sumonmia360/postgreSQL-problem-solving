@@ -22,7 +22,7 @@ INSERT INTO rangers(name,region) VALUES('Derek Fox','Coastal Plains');
 
 --problem-2
 
-SELECT  count(conservation_status) as unique_species_count FROM species WHERE conservation_status = 'Endangered';
+SELECT  DISTINCT count(*) as unique_species_count FROM species ;
 
 --problem-3
 
@@ -40,5 +40,23 @@ SELECT common_name FROM species WHERE species_id NOT IN (SELECT species_id  FROM
 CREATE or REPLACE VIEW sighting_and_species_T as ( SELECT * FROM species JOIN  sightings USING(species_id))
 SELECT common_name,sighting_time,name FROM rangers JOIN sighting_and_species_t USING(ranger_id) ORDER BY sighting_time DESC LIMIT 2;;
 
+--problem-7
+UPDATE species set conservation_status = 'Historic' WHERE extract(YEAR FROM discovery_date) < 1800;
+
+--problem-8
+
+CREATE TABLE time_of_day(wk_name VARCHAR(50));
+INSERT INTO time_of_day VALUES('Morning'),('Afternoon'),('Evening');
+SELECT * FROM time_of_day;
+SELECT sighting_id,wk_name FROM sightings NATURAL JOIN time_of_day WHERE extract(HOUR FROM sighting_time) < 12  or extract(HOUR FROM sighting_time) > 5;
+
+--problem-9
+
+DELETE FROM rangers WHERE NOT ranger_id IN((SELECT ranger_id FROM sightings JOIN rangers USING(ranger_id)))
 
 
+----------
+
+SELECT * FROM species;
+SELECT * FROM sightings;
+SELECT * FROM rangers;
